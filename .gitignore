@@ -48,7 +48,6 @@ build-*/
 CMakeFiles/
 CMakeCache.txt
 cmake_install.cmake
-Makefile
 install_manifest.txt
 compile_commands.json
 
@@ -67,3 +66,27 @@ vcpkg_installed/
 # test output & cache
 Testing/
 .cache/
+
+# Build outputs
+build/
+dist/
+out/
+
+# Binary files
+*.o
+*.elf
+*.bin
+*.iso
+*.img
+
+# Debug files
+*.map
+*.log
+
+# Editor stuff
+.vscode/
+.idea/
+
+# OS junk
+.DS_Store
+Thumbs.db
