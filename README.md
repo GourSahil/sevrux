@@ -31,4 +31,4 @@ sevrux/
 ```
 
 ## Docs
-* Docs will be found [Here](docs/)
+* Docs will be found [Here](docs/index.md)
