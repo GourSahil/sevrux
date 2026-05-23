@@ -1,16 +1,10 @@
 section .multiboot
-align 8
+align 4
 
 mb_header_start:
-    dd 0xe85250d6
-    dd 0
-    dd mb_header_end - mb_header_start
-    dd -(0xe85250d6 + 0 + (mb_header_end - mb_header_start))
-
-    dw 0
-    dw 0
-    dd 8
-
+    dd 0x1BADB002                 ; multiboot magic
+    dd 0x0                        ; flags
+    dd -(0x1BADB002 + 0x0)       ; checksum
 mb_header_end:
 
 section .bss
@@ -30,16 +24,16 @@ extern __bss_end
 _start:
     cli
 
-    ; setup 64-bit stack
-    mov rsp, stack_top
+    ; setup 32-bit stack
+    mov esp, stack_top
 
-    ; zero .bss section
-    mov rdi, __bss_start
-    mov rcx, __bss_end
+    ; clear .bss
+    mov edi, __bss_start
+    mov ecx, __bss_end
 
-    sub rcx, rdi
+    sub ecx, edi
 
-    xor rax, rax
+    xor eax, eax
 
     rep stosb
 

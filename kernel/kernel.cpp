@@ -3,15 +3,17 @@
 
 // The main kernel code is put here.
 
+#include <drivers/vga.hpp>
+
 extern "C" void kernel_main() {
-  volatile char *vga = (volatile char *)0xB8000;
+  VGA vga;
+  vga.setColor(VGA::LIGHT_GREEN, VGA::BLACK);
 
-  const char *msg = "Hello from kernel!";
+  vga.clear();
 
-  for (int i = 0; msg[i] != '\0'; i++) {
-    vga[i * 2] = msg[i];
-    vga[i * 2 + 1] = 0x0F;
-  }
+  vga.print("Sevrux Booted!\n");
+  vga.setColor(VGA::LIGHT_CYAN, VGA::WHITE);
+  vga.print("Finally it got printed");
 
   while (true) {
     asm volatile("hlt");
